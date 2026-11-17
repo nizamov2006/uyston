@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="kk">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Уитстон · Гронсфельд — шифрлау зертханасы</title>
+<meta name="theme-color" content="#040b1a">
+<meta name="description" content="Уитстон және Гронсфельд шифрлары: шифрлау, кері шифрлау және қадамдық есеп. Қазақ, орыс және ағылшын әліпбилері.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>:root{color-scheme:dark;--bg:#040b1a;--line:#244368;--c1:#4cc9f0;--c2:#ffc857;--tx:#eaf2ff;--mut:#95accc;--lab:#a5d4ec;--border:#4cc9f030;font-family:Inter,"Segoe UI",Arial,sans-serif}*{box-sizing:border-box;margin:0;min-width:0}html,body{height:100%;overflow:hidden}body{color:var(--tx);background:radial-gradient(900px 420px at 8% -10%,#10274b,transparent 70%),radial-gradient(700px 400px at 100% 0,#4cc9f019,transparent 65%),var(--bg);font:13px/1.45 Inter,"Segoe UI",Arial,sans-serif}#rain{position:fixed;inset:0;width:100%;height:100%;opacity:.12;z-index:0;pointer-events:none}.app{position:relative;z-index:1;width:100%;max-width:1800px;height:100vh;height:100dvh;margin:auto;padding:12px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:44px clamp(166px,25vh,208px) clamp(64px,9vh,82px) minmax(0,1fr) clamp(116px,18vh,172px);gap:8px}.top,.pair{display:contents}.sec{display:none}.head{grid-column:1/13;grid-row:1;display:flex;align-items:center;gap:10px}.head>.heading-text{flex:1}.logo{width:36px;height:36px;flex:none}.eyebrow{font-size:9px;color:var(--c2);letter-spacing:.12em;margin-bottom:3px}h1{font-size:clamp(14px,1.4vw,21px);line-height:1.3;font-weight:600;letter-spacing:.005em}.head-actions{display:flex;gap:8px;flex:none}.card,.mini{padding:10px 12px;border:1px solid var(--border);border-radius:12px;min-height:0;overflow:hidden;background:linear-gradient(150deg,#142d58c9,#091a36ed);box-shadow:0 5px 18px #0003}.ch{display:flex;align-items:center;gap:8px;min-height:22px;flex:none}.ch h3{font-size:15px;font-weight:600}.no{display:grid;place-items:center;min-width:24px;font-size:10px;font-weight:600;padding:2px 5px;border:1px solid #4cc9f040;border-radius:5px;background:#4cc9f014;color:var(--c1)}.tg{margin-left:auto;font-size:10px;color:var(--mut)}.cap,.hint,.note,.m{font-size:11px;line-height:1.4;color:var(--mut)}.hint{margin-top:5px}.cap{margin-top:4px}button,input,textarea{font:inherit;color:var(--tx)}button{min-height:28px;padding:4px 10px;border:1px solid var(--border);border-radius:7px;background:#102649;cursor:pointer;transition:background .15s,border-color .15s;white-space:nowrap}button:hover{background:#1b3c69;border-color:var(--c1)}button:disabled{opacity:.45;cursor:default}button:focus-visible,[role=button]:focus-visible{outline:2px solid var(--c1);outline-offset:2px}button.btn{background:linear-gradient(135deg,var(--c1),#4f8cff);color:#03142d;border:0;font-weight:700}button.btn.g{background:#102649;color:var(--tx);border:1px solid var(--border);font-weight:400}.head-actions button{border-radius:20px;font-size:12px;min-height:32px;padding:5px 12px}#aiBtn{color:var(--c1)}#mBtn{color:var(--c2)}#aiBtn b{display:none}
+#model{grid-column:1/7;grid-row:2}#attack{grid-column:7/13;grid-row:2}.card{display:grid;grid-template-rows:28px minmax(40px,1fr) minmax(45px,1fr);gap:7px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.panel-head .tg{display:none}.seg{display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:2px;border:1px solid var(--border);border-radius:8px;background:#030a1c}.seg button{background:transparent;color:var(--mut);font-size:12px;min-height:23px;padding:3px 8px;border:0;border-radius:5px}.seg button.on{background:linear-gradient(135deg,#4cc9f035,#4f8cff30);box-shadow:inset 0 0 0 1px #4cc9f04d;color:var(--tx)}label{display:block;font-size:10px;line-height:1.3;color:var(--mut);margin-bottom:3px;white-space:nowrap}.entry-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:10px;min-height:0}.text-entry{display:flex;flex-direction:column;min-height:0}.keys{display:grid;grid-template-columns:1fr 1fr;gap:8px}.keys.single{grid-template-columns:1fr}.keys>div{display:flex;flex-direction:column;min-height:0}input,textarea{width:100%;min-height:0;background:#030c1e;border:1px solid var(--border);border-radius:6px;padding:5px 8px;outline:none;font-size:14px;letter-spacing:.015em}input{height:30px;flex:1}textarea{resize:none;flex:1;line-height:1.3}input:focus,textarea:focus{border-color:var(--c1);box-shadow:0 0 0 2px #4cc9f020}.panel-action{display:flex;gap:10px;align-items:stretch;min-height:0}.btns{display:flex;flex-direction:column;justify-content:center;gap:4px}.btns button{font-size:11px;min-height:22px;padding:2px 10px}.resbox{padding:5px 9px;background:linear-gradient(135deg,#4cc9f012,#4f8cff08);border:1px solid #4cc9f045;border-radius:8px;min-height:0;flex:1;display:grid;grid-template-columns:minmax(0,1fr) auto;align-content:center;align-items:center;gap:2px 6px;cursor:pointer}.resbox:hover{border-color:var(--c1)}.resbox label{grid-column:1;margin:0}.out{grid-column:1;min-height:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:600}.copy-result{grid-column:2;grid-row:1/3;min-height:28px;padding:3px 7px;font-size:10px}#galpha{display:none}#attack .btns{display:grid;grid-template-columns:1fr 1fr;gap:3px;align-content:center}#gg{grid-column:1/3}
+#abs{grid-column:1/13;grid-row:3;display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:10px}.abp{padding:7px 10px;cursor:pointer}.abp.on{border-color:var(--c1);background:linear-gradient(145deg,#15345c,#0d2341)}.abp:hover{border-color:#4cc9f090}.abp .ch{gap:6px;min-height:17px;margin-bottom:4px}.abp .ch h3{font-size:12px}.abp .tg{font-size:10px}.abp .cap,.abp .use{display:none}.abl{display:flex;flex-wrap:wrap;gap:2px 3px;max-height:32px;overflow:hidden}.abl span{font-size:10px;line-height:13px;padding:0 3px;border:1px solid var(--border);border-radius:3px;background:#030c1e}
+#wst{grid-column:1/7;grid-row:4}#gst{grid-column:7/13;grid-row:4}.calculation-card{display:flex;flex-direction:column;gap:5px}.calculation-card>.ch{justify-content:space-between}.calculation-card>.ch h3{font-size:13px;color:var(--c1)}.open-detail{font-size:10px;padding:1px 7px;min-height:22px}.fm{font:12px/1.45 "Segoe UI",Arial,sans-serif;color:#e6d4a1;background:#030c1e;border:1px solid var(--border);border-left:2px solid var(--c2);border-radius:5px;padding:3px 7px;flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.fm sub{font-size:.75em}.analysis-body{display:grid;grid-template-columns:1.1fr 1fr;gap:10px;min-height:0;flex:1}.sqs{display:grid;grid-template-columns:1fr 1fr;gap:7px;min-height:0;align-content:start}.sq{display:grid;grid-auto-rows:minmax(0,1fr);gap:2px;height:clamp(84px,14vh,140px);cursor:zoom-in}.sq i{font-style:normal;display:grid;place-items:center;font-size:10px;border-radius:3px;border:1px solid #4cc9f025;background:#030c1e;color:var(--c1)}.sqR i{color:var(--c2);border-color:#ffc85725;background:#151627}.sq i.h{background:var(--c1);color:#03142d;border-color:var(--c1)}.sqR i.h{background:var(--c2);border-color:var(--c2)}.sqs .cap{font-size:9px;margin-top:4px}.tw{min-height:0;overflow:hidden;flex:1}table{width:100%;table-layout:fixed;border-collapse:collapse;line-height:1.4;font-size:11px}th{text-align:left;font-weight:500;font-size:9px;padding:3px 4px;border-bottom:1px solid var(--border);color:var(--mut)}td{font-variant-numeric:tabular-nums;padding:3px 4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border-bottom:1px solid #4cc9f010}td:last-child{color:var(--c1);font-weight:600}th:first-child{width:26px}th:nth-child(2){width:15%}th:last-child{width:16%}tr:nth-child(even){background:#4cc9f005}tr:hover td{background:#4cc9f00a}#wst .tw th:nth-child(3),#wst .tw td:nth-child(3),#wst .tw th:nth-child(4),#wst .tw td:nth-child(4){display:none}#wst .tw th:nth-child(2){width:auto}#wst .tw th:last-child{width:34%}
+#chm{grid-column:1/13;grid-row:5;display:flex;flex-direction:column;gap:3px;padding:8px 12px;cursor:zoom-in}#chm:hover{border-color:var(--c1)}#chm .ch{justify-content:space-between;min-height:20px}#chm h3{font-size:12px!important}#chm .ch>div:first-child{display:flex;gap:10px;align-items:center}#chm .cap{font-size:10px;margin:0}.expand-chart{font-size:10px;color:var(--c1);white-space:nowrap}#chart{flex:1;min-height:0;position:relative;overflow:hidden}#chart svg{position:absolute;inset:0;width:100%;height:100%;min-width:0}.legend{display:flex;gap:10px;font-size:10px;flex:none;color:var(--mut)}.legend i{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:4px}.hide,#wmm,#gmm{display:none!important}
+#dialog{position:fixed;inset:0;background:#020713de;backdrop-filter:blur(8px);z-index:50;display:none;align-items:center;justify-content:center;padding:16px}.dialog-card{width:100%;max-width:1100px;max-height:calc(100dvh - 32px);overflow:auto;border-radius:16px;padding:22px;border:1px solid #4cc9f060;background:linear-gradient(160deg,#13306b,#081633);box-shadow:0 20px 60px #0009}.dialog-head{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:12px}.dialog-head h2{font-size:20px;font-weight:600;line-height:1.3}.dialog-head button{min-height:32px}.dialog-intro{font-size:12px;color:var(--mut);line-height:1.5;margin-bottom:12px}.dialog-tabs,.chart-controls{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.dialog-tabs button[aria-pressed=true]{color:var(--c1);border-color:var(--c1)}.chart-controls button[aria-pressed=false]{opacity:.45}#largeChart svg{width:100%;max-height:48dvh;display:block}.chart-bar{cursor:pointer}.chart-bar:hover{opacity:.75}.detail{margin-top:10px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:#071a3a;font-size:13px;line-height:1.6}.alphabet-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(45px,1fr));gap:6px;margin-top:12px}.alphabet-grid div{background:#030c1e;border:1px solid var(--border);border-radius:7px;padding:6px;text-align:center}.alphabet-grid b{display:block;font-size:23px}.alphabet-grid small{color:var(--mut);font-size:10px}.dialog-squares{max-width:800px;margin:12px auto;display:grid;grid-template-columns:1fr 1fr;gap:20px}.dialog-squares .sq{height:clamp(160px,35dvh,320px);cursor:default;gap:4px}.dialog-squares .sq i{font-size:clamp(12px,2vw,22px)}.dialog-squares .cap{font-size:12px;margin-top:8px}.dialog-card table{font-size:12px}.dialog-card td{padding:6px 4px}.dialog-card th{font-size:10px}.pagination{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px;font-size:12px}#rowDetail{margin-top:10px}.model-content{font-size:13px;line-height:1.65}.model-content .fm{white-space:normal;margin:6px 0;font-size:13px}.model-content h4{font-size:12px;color:var(--c2);margin:12px 0 6px}.model-content ol{padding-left:20px}.model-content li{margin:6px 0}.full-result{display:block;width:100%;height:140px;flex:none;font-size:15px;line-height:1.6;padding:12px;margin-bottom:12px}.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:100;max-width:90vw;padding:10px 16px;border:1px solid var(--c1);border-radius:10px;background:#173868;font-size:12px}
+#aiPanel{position:fixed;top:64px;right:12px;z-index:40;display:none;flex-direction:column;width:min(400px,calc(100vw - 24px));height:min(500px,calc(100dvh - 78px));border:1px solid #4cc9f060;border-radius:12px;background:linear-gradient(160deg,#13306b,#081633);box-shadow:0 15px 50px #0009;overflow:hidden}#aiPanel.open{display:flex}#aiHead{display:flex;align-items:center;gap:8px;padding:12px;border-bottom:1px solid var(--border);font-size:13px}#aiHead button{margin-left:auto;min-height:25px;padding:0 7px}#aiNote{font-size:10px;color:var(--mut);padding:8px 12px 0}#aiLog{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:8px;padding:12px}.msg{font-size:12px;line-height:1.6;white-space:pre-wrap;padding:8px 10px;border-radius:10px;max-width:95%}.msg.bot{background:#101a42;border:1px solid var(--border);align-self:flex-start}.msg.me{color:var(--c1);background:#4cc9f015;align-self:flex-end}#aiChips{display:flex;gap:4px;flex-wrap:wrap;padding:0 12px 10px}#aiChips button{font-size:10px;min-height:25px;padding:3px 8px;border-radius:20px;color:var(--c1)}#aiForm{display:flex;gap:6px;padding:10px 12px;border-top:1px solid var(--border)}#aiIn{height:34px}#aiSend{color:var(--c1);font-size:18px}
+@media(min-width:1550px) and (min-height:850px){.app{padding:16px;gap:10px;grid-template-rows:50px 212px 82px minmax(0,1fr) 180px}.card,.mini{padding:12px 14px}.fm{font-size:13px}table{font-size:13px}th{font-size:10px}.abl span{font-size:12px;line-height:16px}.abl{max-height:38px}.abp .ch h3{font-size:14px}.sq{height:150px}.sq i{font-size:12px}}
+@media(max-width:1100px){.head-actions{gap:5px}.head-actions button{font-size:11px;padding:4px 9px}h1{font-size:14px}.eyebrow{font-size:8px}.panel-head{gap:6px}.ch h3{font-size:14px}.seg button{font-size:11px;padding:3px 6px}.entry-grid{gap:8px}.keys{gap:6px}label{font-size:9px}.btns button{padding:2px 7px}.copy-result{font-size:9px;padding:3px 5px}.fm{font-size:11px}.analysis-body{grid-template-columns:1.2fr 1fr;gap:8px}.sq i{font-size:9px}.sqs{gap:5px}.sqs .cap{font-size:8px}}
+@media(min-width:761px) and (max-height:700px){.app{padding:8px;gap:6px;grid-template-rows:36px 152px 54px minmax(0,1fr) 108px}.card,.mini{padding:7px 10px}.card{grid-template-rows:24px minmax(35px,1fr) minmax(36px,1fr);gap:4px}.abp .abl{flex-wrap:nowrap;max-height:15px}.abl span{border:0;background:none;padding:0 1px}.calculation-card{gap:3px}.sq{height:80px}.sqs .cap{display:none}.fm{font-size:10px;padding:2px 5px}td{padding:2px 4px}.head .eyebrow{display:none}}
+@media(max-width:760px){.app{padding:8px;gap:6px;grid-template-rows:48px clamp(256px,37dvh,300px) 44px minmax(0,1fr) clamp(100px,17dvh,144px)}.head{gap:7px}.logo{width:28px;height:28px}.head .eyebrow{display:none}h1{font-size:12px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.head-actions{flex-direction:column;gap:3px}.head-actions button{min-height:21px;font-size:9px;padding:2px 8px}.top{display:grid;grid-column:1/13;grid-row:2;grid-template-rows:1fr 1fr;gap:6px;min-height:0}#model,#attack{grid-column:auto;grid-row:auto}.card{padding:6px 8px;grid-template-rows:23px minmax(33px,1fr) minmax(33px,1fr);gap:4px}.panel-head .ch{gap:5px}.panel-head .ch h3{font-size:13px}.no{font-size:9px;min-width:22px;padding:1px 4px}.seg button{font-size:10px;min-height:21px;padding:2px 6px}.entry-grid{grid-template-columns:1.2fr 1fr;gap:7px}.keys{gap:5px}label{font-size:8px;margin-bottom:2px}.entry-grid textarea{font-size:11px;padding:3px 5px}.keys input{font-size:11px;padding:3px 5px;height:23px}.panel-action{gap:7px}.btns{flex-direction:row;align-items:center;gap:4px}.btns button{font-size:9px;padding:3px 6px;min-height:25px}#attack .btns{display:flex;gap:3px}#gx{display:none}.resbox{padding:3px 6px;gap:1px 4px}.resbox label{font-size:8px}.out{font-size:11px;min-height:16px}.copy-result{font-size:8px;min-height:24px;padding:2px 4px}#abs{gap:5px;grid-template-columns:1fr 1fr 1fr}.abp{padding:5px 7px;display:flex;align-items:center;justify-content:center}.abp .ch{display:grid;grid-template-columns:auto 1fr;gap:1px 5px;margin:0}.abp .no{grid-row:1/3}.abp .ch h3{font-size:10px;line-height:1.15}.abp .tg{margin:0;font-size:8px}.abp .abl{display:none}.calculation-card{padding:7px 8px;gap:4px}.calculation-card>.ch{gap:4px;min-height:20px}.calculation-card>.ch h3{font-size:11px}.open-detail{font-size:9px;padding:1px 5px;min-height:21px}.calculation-card .fm{font-size:9px;line-height:1.4;padding:2px 5px}.analysis-body{display:flex;flex-direction:column;gap:5px}.sqs{gap:5px;flex:none}.sq{height:clamp(48px,9dvh,76px);gap:1px}.sq i{font-size:7px;border-radius:2px}.sqs .cap{display:none}table{font-size:10px}th{font-size:8px;padding:2px}td{padding:2px}th:first-child{width:16px}th:nth-child(2){width:24%}th:last-child{width:23%}#gst .tw th:nth-child(4),#gst .tw td:nth-child(4){display:none}#chm{padding:7px 9px;gap:3px}#chm h3{font-size:10px!important;line-height:1.2}#chm .cap{display:none}#chm .ch{gap:4px}#chm .ch>div:first-child{gap:4px}.expand-chart{font-size:10px}.legend{gap:5px;font-size:8px}.legend i{width:5px;height:5px;margin-right:3px}#dialog{padding:10px}.dialog-card{padding:14px;max-height:calc(100dvh - 20px)}.dialog-head{margin-bottom:10px}.dialog-head h2{font-size:17px}.dialog-head button{min-height:28px;font-size:11px}.chart-controls{gap:6px}.chart-controls button,.dialog-tabs button{font-size:11px;padding:4px 7px}#largeChart svg{max-height:42dvh}.detail{font-size:12px}.dialog-squares{gap:10px}.dialog-squares .sq{height:180px}.dialog-squares .sq i{font-size:12px}.dialog-squares .cap{font-size:10px}.dialog-card table{font-size:10px}.dialog-card th{font-size:9px}.dialog-card td{padding:5px 3px}.dialog-intro{font-size:11px}.alphabet-grid{grid-template-columns:repeat(auto-fit,minmax(35px,1fr));gap:4px}.alphabet-grid b{font-size:20px}#aiPanel{top:62px;max-height:calc(100dvh - 74px)}}
+@media(max-width:380px){.app{padding:6px;gap:5px;grid-template-rows:46px clamp(248px,37dvh,280px) 40px minmax(0,1fr) clamp(92px,16dvh,130px)}.card{padding:5px 7px}.btns button{font-size:8px;padding:2px 5px}.abp .ch h3{font-size:9px}.calculation-card>.ch h3{font-size:10px}.open-detail{font-size:8px}.legend{font-size:7px}.out{font-size:10px}.copy-result{font-size:7px}.entry-grid textarea,.keys input{font-size:10px}.keys{gap:4px}.sq{height:50px}}
+@media(min-width:761px) and (max-height:500px){.app{padding:6px;gap:4px;grid-template-rows:30px 126px 40px minmax(0,1fr) 84px}.head-actions button{min-height:24px}.card{grid-template-rows:22px minmax(29px,1fr) minmax(28px,1fr);padding:5px 8px;gap:3px}.seg button{min-height:20px;padding:1px 6px}.entry-grid textarea,.keys input{font-size:11px;padding:3px 5px}.panel-action{gap:6px}.btns{flex-direction:row;align-items:center}.btns button{min-height:24px;font-size:9px;padding:2px 6px}#attack .btns{display:flex}#gx{display:none}.out{font-size:11px}.resbox{padding:2px 6px}.copy-result{font-size:8px;min-height:24px}.abp .abl{display:none}.abp{display:flex;align-items:center}.abp .ch{margin:0;flex:1}.calculation-card{gap:2px}.calculation-card .fm{display:none}.sq{height:26px;gap:1px}.sq i{font-size:6px}.sqs .cap{display:none}.calculation-card>.ch{min-height:18px}.calculation-card>.ch h3{font-size:11px}.open-detail{min-height:20px}.calculation-card .tw{display:none}#chm .cap{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(min-width:761px) and (max-width:1100px){.abl{gap:2px}.abl span{border:0;background:transparent;padding:0 1px;font-size:10px;line-height:14px}}
+</style><style>
+@media(max-width:760px){
+html,body{height:auto;overflow:auto} .app{height:auto;min-height:100dvh;display:flex;flex-direction:column;padding:12px;gap:12px}
+.head{min-height:68px;flex-wrap:wrap;height:auto}.head>.heading-text{min-width:210px}h1{font-size:15px}.head-actions{width:100%;justify-content:flex-end;flex-wrap:wrap}
+.card{min-height:260px;grid-template-rows:36px minmax(100px,1fr) minmax(70px,auto);gap:10px;padding:14px}.card h3{font-size:17px}.entry-grid{gap:10px}.keys{gap:8px}.keys input,.entry-grid textarea{font-size:16px;padding:8px}.keys input{height:42px}label{font-size:11px}.seg button{min-height:34px;font-size:11px}.btns button{min-height:36px;font-size:12px}.out{font-size:14px}.copy-result{min-height:36px;font-size:11px}
+#abs{display:grid;grid-template-columns:repeat(3,1fr);min-height:68px;gap:6px}.abp{padding:9px 6px}.abp .ch{display:flex;flex-wrap:wrap}.abp .ch h3{font-size:11px}.abp .abl{display:none}.abp .tg{font-size:10px}.abp .no{display:none}
+.calculation-card{min-height:245px;padding:14px;gap:10px}.calculation-card>.ch h3{font-size:15px}.open-detail{font-size:12px;min-height:34px}.analysis-body{min-height:150px}.sq{height:140px}.sq i{font-size:11px}.calculation-card .tw{display:block}.fm{font-size:11px;min-height:27px}.sqs .cap{display:block;font-size:10px}#chm{min-height:185px;padding:14px}#chart{min-height:120px}.legend{font-size:11px}
+button{touch-action:manipulation}#aiPanel{position:fixed;top:12px;right:12px;left:12px;bottom:12px;width:auto;max-height:none}.head-actions button{min-height:36px}
+}
+</style><style>
+.install-heading{font-size:16px;margin:16px 0 8px;color:var(--c1)}
+.download-app{display:inline-block;padding:11px 16px;margin:0 0 14px;border-radius:8px;background:var(--c1);color:#03142d;font-weight:700;text-decoration:none}
+.download-app:hover{background:#8fe2ff}.download-app:focus-visible{outline:2px solid var(--c2);outline-offset:3px}
+@media(min-width:761px){
+html,body{overflow:auto}
+.app{height:100dvh;min-height:700px;grid-template-rows:minmax(64px,auto) 176px 64px minmax(196px,1fr) 120px}
+.head{min-height:64px}.head-actions{flex-wrap:wrap;justify-content:flex-end}
+}
+@media(min-width:761px) and (max-width:1100px){
+.head{flex-wrap:wrap;padding-bottom:6px}.head>.heading-text{flex:1 1 340px}.head-actions{margin-left:auto}
+}
+</style><link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjEwMCIgZmlsbD0iIzA0MGIxYSIvPjxyZWN0IHg9IjkwIiB5PSI5MCIgd2lkdGg9IjIxMCIgaGVpZ2h0PSIyMTAiIHJ4PSIzMCIgZmlsbD0iIzEwMjY0OSIgc3Ryb2tlPSIjNGNjOWYwIiBzdHJva2Utd2lkdGg9IjE0Ii8+PHJlY3QgeD0iMjEyIiB5PSIyMTIiIHdpZHRoPSIyMTAiIGhlaWdodD0iMjEwIiByeD0iMzAiIGZpbGw9IiMxMDI2NDkiIHN0cm9rZT0iI2ZmYzg1NyIgc3Ryb2tlLXdpZHRoPSIxNCIvPjxwYXRoIGQ9Ik0xNDUgMTU1aDEwMG0tMTAwIDUwaDEwMG0yMCAxMDBoMTAwbS0xMDAgNTBoMTAwIiBzdHJva2U9IiNlYWYyZmYiIHN0cm9rZS13aWR0aD0iMTQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg=="></head>
+
+<body>
+  <!-- Фондағы жауын анимациясы -->
+  <canvas id="rain"></canvas>
+
+  <div class="app">
+
+    <!-- ===================== ТАҚЫРЫП ===================== -->
+    <div class="head">
+      <!-- Логотип: екі квадрат (көгілдір және сары) -->
+      <svg class="logo" viewBox="0 0 52 52" aria-hidden="true">
+        <g font-family="ui-monospace,monospace" font-size="8" font-weight="700">
+          <rect x="1" y="1" width="30" height="30" rx="5" fill="#050a22" stroke="#22e5ff" stroke-width="1.5" />
+          <rect x="21" y="21" width="30" height="30" rx="5" fill="#120d24" stroke="#ffb547" stroke-width="1.5" />
+          <g fill="#22e5ff">
+            <text x="6" y="12">У</text>
+            <text x="14" y="12">И</text>
+            <text x="22" y="12">Т</text>
+            <text x="6" y="21">С</text>
+            <text x="14" y="21">Т</text>
+            <text x="6" y="29">О</text>
+          </g>
+          <g fill="#ffb547">
+            <text x="27" y="38">Н</text>
+            <text x="35" y="38">Ш</text>
+            <text x="43" y="38">И</text>
+            <text x="27" y="47">Ф</text>
+            <text x="35" y="47">Р</text>
+            <text x="43" y="47">Ы</text>
+          </g>
+        </g>
+      </svg>
+
+      <div class="heading-text">
+        <div class="eyebrow">WHEATSTONE · DOUBLE-SQUARE CIPHER</div>
+        <h1>Уитстонның қосарланған квадрат шифрін бағдарламалық модельдеу және криптоталдау</h1>
+      </div>
+    </div>
+
+    <!-- ===================== 1-БӨЛІМ: ЕКІ ШИФР ===================== -->
+<div class="top">
+ <div class="card" id="model"><div class="panel-head"><div class="ch"><span class="no">01</span><h3>Уитстон</h3></div><div class="seg"><button id="be" class="on">Шифрлау</button><button id="bd">Кері шифрлау</button></div></div>
+ <div class="entry-grid"><div class="text-entry"><label for="inp" id="lblin">Бастапқы мәтін</label><textarea id="inp"></textarea></div><div class="keys"><div><label for="k1">1-кілт · L</label><input id="k1"></div><div><label for="k2">2-кілт · R</label><input id="k2"></div></div></div>
+ <div class="panel-action"><div class="btns"><button class="btn" id="bg">Шифрлау →</button><button class="btn g" id="bc">Тазалау</button></div><div class="resbox"><label>Уитстон нәтижесі ↗</label><div class="out" id="out"></div></div></div></div>
+ <div class="card" id="attack"><div class="panel-head"><div class="ch"><span class="no">02</span><h3>Гронсфельд</h3></div><div class="seg"><button id="ge" class="on">Шифрлау</button><button id="gd">Кері шифрлау</button></div></div>
+ <div class="entry-grid"><div class="text-entry"><label for="gin" id="glblin">Бастапқы мәтін</label><textarea id="gin"></textarea></div><div class="keys single"><div><label for="gk">Сандық кілт · 0–9</label><input id="gk" inputmode="numeric"></div></div></div>
+ <div class="panel-action"><div class="btns"><button class="btn" id="gg">Шифрлау →</button><button class="btn g" id="gx">Мысал</button><button class="btn g" id="gc">Тазалау</button></div><div class="resbox"><label>Гронсфельд нәтижесі ↗</label><div class="out" id="gout"></div></div></div><div class="alpha" id="galpha"></div></div>
+ </div>
+    <!-- ===================== 2-БӨЛІМ: ӘЛІПБИ ТАҢДАУ (RU / KK / EN) ===================== -->
+    <div class="abs" id="abs"></div>
+
+    <!-- ===================== 3-БӨЛІМ: ҚАДАМДЫҚ ЕСЕП ===================== -->
+    <div class="sec"><b>03 / ФОРМУЛАЛАР</b><span>Әр әріптің қадамдық есебі</span></div>
+
+    <div class="pair">
+      <!-- Уитстон кестесі -->
+      <div class="mini calculation-card" id="wst">
+        <div class="ch"><h3>Уитстон шифры</h3></div>
+        <div class="fm" id="wfm"></div>
+
+        <div class="sqs">
+          <div>
+            <div class="sq sqL" id="sqL"></div>
+            <div class="cap">L — сол квадрат (1-кілт)</div>
+          </div>
+          <div>
+            <div class="sq sqR" id="sqR"></div>
+            <div class="cap">R — оң квадрат (2-кілт) · белгіленген ұяшықтар</div>
+          </div>
+        </div>
+
+        <div class="tw">
+          <table>
+            <thead>
+              <tr><th>№</th><th>Жұп</th><th>Координаттар</th><th>Есептеу</th><th>Нәтиже</th></tr>
+            </thead>
+            <tbody id="wtb"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Гронсфельд кестесі -->
+      <div class="mini calculation-card" id="gst">
+        <div class="ch"><h3>Гронсфельд шифры</h3></div>
+        <div class="fm" id="gfm"></div>
+
+        <div class="tw">
+          <table>
+            <thead>
+              <tr><th>№</th><th>Әріп</th><th>Кілт</th><th>Есептеу</th><th>Нәтиже</th></tr>
+            </thead>
+            <tbody id="gtb"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== 4-БӨЛІМ: ДИАГРАММА ===================== -->
+    <div class="sec"><b>04 / ДИАГРАММА</b></div>
+
+    <div class="mini" id="chm">
+      <div class="ch">
+        <div>
+          <h3 style="font-size:16px">Нәтиже индекстерін салыстыру</h3>
+          <div class="cap">Алғашқы 12 әріп · әліпби индексі</div><span class="expand-chart">⤢</span>
+        </div>
+        <div class="legend">
+          <span><i style="background:var(--c1)"></i>Уитстон</span>
+          <span><i style="background:var(--c2)"></i>Гронсфельд</span>
+        </div>
+      </div>
+      <div class="chartw" id="chart"></div>
+    </div>
+
+    <!-- ===================== 5-БӨЛІМ: МАТЕМАТИКАЛЫҚ МОДЕЛЬ ===================== -->
+    <div class="sec"><b>05 / МОДЕЛЬ</b><span>Формулалар мен шығару жолы</span></div>
+
+    <div class="pair">
+      <div class="mini" id="wmm">
+        <div class="ch"><h3>Уитстон: математикалық модель</h3><span class="tg"><span class="mt" data-m="w">Уитстон</span><span class="mt" data-m="g">Гронсфельд</span></span></div>
+        <div class="math" id="wmath"></div>
+      </div>
+
+      <div class="mini hide" id="gmm">
+        <div class="ch"><h3>Гронсфельд: математикалық модель</h3><span class="tg"><span class="mt" data-m="w">Уитстон</span><span class="mt" data-m="g">Гронсфельд</span></span></div>
+        <div class="math" id="gmath"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       JAVASCRIPT: Уитстон және Гронсфельд шифрлары
+       ============================================================ -->
+  <script>
+    /* ===================== 1. ДЕРЕКТЕР ===================== */
+
+    // Әліпбилер: ab — әріптер, r × c — Уитстон квадратының өлшемі (жол × баған),
+    // pad — әріп саны тақ болғанда қосылатын толықтырушы әріп
+    const AB = {
+      kk: { ab: "АӘБВГҒДЕЁЖЗИЙКҚЛМНҢОӨПРСТУҰҮФХҺЦЧШЩЪЫІЬЭЮЯ", r: 6, c: 7, pad: "Х" },
+      ru: { ab: "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ", r: 3, c: 11, pad: "Х" },
+      en: { ab: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", r: 2, c: 13, pad: "X" }
+    };
+
+    // Әліпби панелінің атаулары
+    const LANGS = {
+      ru: { tag: "RU", name: "Орыс әліпбиі" },
+      kk: { tag: "KK", name: "Қазақ әліпбиі" },
+      en: { tag: "EN", name: "Ағылшын әліпбиі" }
+    };
+
+    // Уитстон шифрінің мысалдары (кілт 1, кілт 2, мәтін)
+    const DEMO = {
+      kk: { k1: "КРИПТО", k2: "ҚАЗАҚСТАН", t: "АҚПАРАТТЫ ҚОРҒАУ ЖҮЙЕСІ" },
+      ru: { k1: "КРИПТО", k2: "КАЗАХСТАН", t: "ЗАЩИТА ИНФОРМАЦИИ" },
+      en: { k1: "CIPHER", k2: "WHEATSTONE", t: "INFORMATION SECURITY SYSTEM" }
+    };
+
+    // Гронсфельд шифрінің мысалдары (мәтін, кілт)
+    const GD = {
+      kk: { t: "АҚПАРАТТЫ ҚОРҒАУ", k: "31415" },
+      ru: { t: "ЗАЩИТА ИНФОРМАЦИИ", k: "31415" },
+      en: { t: "INFORMATION SECURITY", k: "31415" }
+    };
+
+
+    /* ===================== 2. ЖАЛПЫ АЙНЫМАЛЫЛАР ===================== */
+
+    // getElementById қысқаша жазылуы: $("id")
+    const $ = id => document.getElementById(id);
+
+    let lang = "kk";     // таңдалған әліпби
+    let mode = false;    // Уитстон: false — шифрлау, true — кері шифрлау
+    let cur = null;      // Уитстонның соңғы нәтижесі
+    let gdec = false;    // Гронсфельд: false — шифрлау, true — кері шифрлау
+    let lastW = "", lastG = "", plainW = "", plainG = "";
+    let gcur = null;     // Гронсфельдтің соңғы нәтижесі
+
+    const A = () => AB[lang];          // Уитстон үшін әліпби
+    const gA = () => AB[lang].ab;      // Гронсфельд үшін әліпби
+
+    // log10(n!) — кілт кеңістігінің өлшемін есептеу үшін
+    function lg10f(n) {
+      let s = 0;
+      for (let i = 2; i <= n; i++) s += Math.log10(i);
+      return s;
+    }
+
+
+    /* ===================== 3. ӘЛІПБИ ПАНЕЛЬДЕРІ ===================== */
+
+    // Үш әліпби панелін салу; таңдалғаны «ҚОЛДАНЫСТА» деп белгіленеді
+    function drawAlphabets() {
+      $("abs").innerHTML = ["ru", "kk", "en"].map(l => {
+        const info = LANGS[l];
+        const letters = [...AB[l].ab].map(ch => "<span>" + ch + "</span>").join("");
+        return '<div class="mini abp' + (l === lang ? " on" : "") + '" role="button" tabindex="0" data-lang="' + l + '">'
+          + '<div class="ch"><span class="no">' + info.tag + '</span><h3>' + info.name + '</h3>'
+          + '<span class="tg">' + AB[l].ab.length + ' әріп</span></div>'
+          + (l === lang ? '<div class="use">ҚОЛДАНЫСТА</div>' : '')
+          + '<div class="abl">' + letters + '</div>'
+          + '<div class="cap">Әліпбиді таңдау үшін басыңыз</div>'
+          + '</div>';
+      }).join("");
+    }
+
+    // Әліпбиді ауыстыру: екі шифр да жаңа әліпбимен қайта есептеледі
+    function setLang(l) {
+      lang = l;
+      drawAlphabets();
+      fill();
+      gfill();
+      fit();
+      chart();
+    }
+
+
+    /* ===================== 4. УИТСТОН ШИФРЫ ===================== */
+
+    // Режимді ауыстыру (шифрлау ↔ кері шифрлау)
+    function setMode(d) {
+      mode = d;
+      $("be").classList.toggle("on", !d);
+      $("bd").classList.toggle("on", d);
+      $("lblin").textContent = d ? "Шифрмәтін" : "Бастапқы мәтін";
+      $("bg").textContent = d ? "Кері шифрлау →" : "Шифрлау →";
+    }
+
+    // Мәтінді тазалау: бас әріпке айналдыру, әліпбиде жоқ таңбаларды алып тастау
+    function norm(t, a) {
+      return [...t.toUpperCase()].filter(c => a.ab.includes(c)).join("");
+    }
+
+    // Кілт сөз бойынша квадрат құру:
+    // алдымен кілт әріптері (қайталанбай), содан кейін әліпбидің қалған әріптері
+    function sq(key, a) {
+      const s = [];
+      for (const c of norm(key, a) + a.ab) {
+        if (!s.includes(c)) s.push(c);
+      }
+      return s;
+    }
+
+    // Негізгі алгоритм: мәтінді екі квадрат арқылы шифрлау / кері шифрлау
+    function core(txt, k1, k2, dec, a) {
+      const L = sq(k1, a);        // сол квадрат
+      const R = sq(k2, a);        // оң квадрат
+      const C = a.c;              // бағандар саны
+      const pl = {};              // әріп → орны (сол квадрат)
+      const pr = {};              // әріп → орны (оң квадрат)
+      const r = i => Math.floor(i / C);   // индекс → жол
+      const c = i => i % C;               // индекс → баған
+
+      L.forEach((h, i) => pl[h] = i);
+      R.forEach((h, i) => pr[h] = i);
+
+      // Әріп саны тақ болса, соңына толықтырушы әріп қосамыз
+      let t = norm(txt, a);
+      if (t.length % 2) t += a.pad;
+
+      let out = "";
+      const st = [];              // әр жұптың есептеу қадамдары
+
+      // Мәтінді жұптап (a, b) өңдейміз
+      for (let i = 0; i < t.length; i += 2) {
+        let ia, ib, ix, iy, o;
+
+        if (!dec) {
+          // ШИФРЛАУ: a — сол квадратта, b — оң квадратта
+          ia = pl[t[i]];
+          ib = pr[t[i + 1]];
+          ix = r(ia) * C + c(ib);   // жол сақталады, баған ауысады
+          iy = r(ib) * C + c(ia);
+          o = R[ix] + L[iy];
+        } else {
+          // КЕРІ ШИФРЛАУ: x — оң квадратта, y — сол квадратта
+          ix = pr[t[i]];
+          iy = pl[t[i + 1]];
+          ia = r(ix) * C + c(iy);
+          ib = r(iy) * C + c(ix);
+          o = L[ia] + R[ib];
+        }
+
+        out += o;
+        st.push({ f: t[i] + t[i + 1], o, L: [ia, iy], R: [ib, ix] });
+      }
+
+      return { out, st, L, R };
+    }
+
+    // Квадратты экранға шығару (hl — белгіленетін ұяшықтар индекстері)
+    function drawSq(el, s, C, hl) {
+      el.style.gridTemplateColumns = "repeat(" + C + ",1fr)";
+      el.innerHTML = s
+        .map((h, i) => "<i" + (hl && hl.includes(i) ? ' class="h"' : "") + ">" + h + "</i>")
+        .join("");
+    }
+
+    // «Шифрлау» / «Кері шифрлау» батырмасын басқанда
+    function run(dec) {
+      setMode(!!dec);
+      if(dec && norm($("inp").value,A()).length%2){toast('Уитстон шифрмәтіні жұп санды әріптен тұруы керек.');return}
+      $("be").classList.toggle("on", !dec);
+      $("bd").classList.toggle("on", !!dec);
+
+      cur = core($("inp").value, $("k1").value, $("k2").value, dec, A());
+
+      // Нәтижені екі әріптен бөліп көрсетеміз
+      $("out").textContent = cur.out.match(/../g)?.join(" ") || "";
+      if(!dec){lastW=cur.out;plainW=$("inp").value;}
+      updW();
+    }
+
+    // «Мысал» деректерін енгізу
+    function fill() {
+      const d = DEMO[lang];
+      $("k1").value = d.k1;
+      $("k2").value = d.k2;
+      $("inp").value = d.t;
+      setMode(false);
+      run(false);
+    }
+
+    // Уитстонға қатысты барлық панельдерді жаңарту
+    function updW() {
+      wmodel();
+      wtable();
+      chart();
+    }
+
+    // Уитстон: қадамдық есеп кестесі + екі квадрат
+    function wtable() {
+      const a = A();
+      const C = a.c;
+      const r = i => Math.floor(i / C);
+      const c = i => i % C;
+
+      // Формула жолы (режимге байланысты)
+      $("wfm").innerHTML = mode
+        ? 'P<sub>1</sub> = L[r<sub>x</sub>, j<sub>y</sub>],  P<sub>2</sub> = R[r<sub>y</sub>, j<sub>x</sub>]'
+        : 'C<sub>1</sub> = R[r<sub>a</sub>, j<sub>b</sub>],  C<sub>2</sub> = L[r<sub>b</sub>, j<sub>a</sub>]';
+
+      if (!cur || !cur.st.length) {
+        $("sqL").innerHTML = "";
+        $("sqR").innerHTML = "";
+        $("wtb").innerHTML = '<tr><td colspan="5" class="m">Мәтін мен кілттерді енгізіңіз.</td></tr>';
+        return;
+      }
+
+      // Квадраттар: бірінші жұптың төрт нүктесі белгіленеді
+      drawSq($("sqL"), cur.L, C, cur.st[0].L);
+      drawSq($("sqR"), cur.R, C, cur.st[0].R);
+
+      // Кесте жолдары
+      $("wtb").innerHTML = cur.st.map((s, n) => {
+        const [ia, iy] = s.L;
+        const [ib, ix] = s.R;
+        const f = s.f;
+        const o = s.o;
+        let coords, calc;
+
+        if (mode) {
+          coords = 'x=' + f[0] + ' R(' + r(ix) + ',' + c(ix) + ') · y=' + f[1] + ' L(' + r(iy) + ',' + c(iy) + ')';
+          calc = 'L(' + r(ix) + ',' + c(iy) + ')=' + o[0] + ', R(' + r(iy) + ',' + c(ix) + ')=' + o[1];
+        } else {
+          coords = 'a=' + f[0] + ' L(' + r(ia) + ',' + c(ia) + ') · b=' + f[1] + ' R(' + r(ib) + ',' + c(ib) + ')';
+          calc = 'R(' + r(ia) + ',' + c(ib) + ')=' + o[0] + ', L(' + r(ib) + ',' + c(ia) + ')=' + o[1];
+        }
+
+        return '<tr><td>' + (n + 1) + '</td><td>' + f + '</td><td>' + coords + '</td><td>' + calc + '</td><td>' + o + '</td></tr>';
+      }).join("");
+    }
+
+    // Уитстон: математикалық модель панелі (формулалар + шығару жолы)
+    function wmodel() {
+      const a = A();
+      const m = a.ab.length;          // әліпби көлемі
+      const C = a.c;                  // бағандар саны
+      const R = a.r;                  // жолдар саны
+      // Кілттегі қайталанбайтын әріптер
+      const u = k => [...new Set(norm(k, a))].join("") || "—";
+
+      // --- Формулалар ---
+      let h = '<h4>Формулалар</h4>'
+        + '<div class="fm">idx = r·c + j;  r = ⌊idx / c⌋,  j = idx mod c</div>'
+        + '<div class="fm">C<sub>1</sub> = R[r<sub>a</sub>, j<sub>b</sub>],  C<sub>2</sub> = L[r<sub>b</sub>, j<sub>a</sub>]</div>'
+        + '<div class="fm">P<sub>1</sub> = L[r<sub>x</sub>, j<sub>y</sub>],  P<sub>2</sub> = R[r<sub>y</sub>, j<sub>x</sub>]</div>';
+
+      // --- Шығару жолы ---
+      h += '<h4>Шығару жолы</h4><ol>'
+        + '<li>Әліпби m = ' + R + '×' + C + ' = ' + m + ' әріптен тұрады; әр әріптің квадраттағы орны — (r, j) жұбы, мұнда r — жол, j — баған (0-ден басталады).</li>'
+        + '<li>Кілт сөз квадратты құрады: қайталанған әріптер алынып тасталады, кілт әріптері қатарымен жазылады, қалған орындар әліпби ретімен толтырылады. 1-кілт «' + u($("k1").value) + '» → сол квадрат L, 2-кілт «' + u($("k2").value) + '» → оң квадрат R.</li>'
+        + '<li>Мәтін жұптарға (a, b) бөлінеді; әріп саны тақ болса, соңына толықтырушы «' + a.pad + '» қосылады.</li>'
+        + '<li>a әрпі L квадратында (r<sub>a</sub>, j<sub>a</sub>), b әрпі R квадратында (r<sub>b</sub>, j<sub>b</sub>) орналасады. Төрт нүкте тіктөртбұрыш құрайды: шифр жұбы — R-дегі (r<sub>a</sub>, j<sub>b</sub>) және L-дегі (r<sub>b</sub>, j<sub>a</sub>), яғни жолдар сақталып, бағандар алмасады.</li>'
+        + '<li>Кері түрлендіру: шифр жұбы (x, y), x — R-де (r<sub>x</sub>, j<sub>x</sub>), y — L-де (r<sub>y</sub>, j<sub>y</sub>). Онда r<sub>x</sub> = r<sub>a</sub>, j<sub>x</sub> = j<sub>b</sub>, r<sub>y</sub> = r<sub>b</sub>, j<sub>y</sub> = j<sub>a</sub>, сондықтан L[r<sub>x</sub>, j<sub>y</sub>] = L[r<sub>a</sub>, j<sub>a</sub>] = a және R[r<sub>y</sub>, j<sub>x</sub>] = R[r<sub>b</sub>, j<sub>b</sub>] = b — түрлендіру өзара бір мәнді.</li>'
+        + '<li>Кілт кеңістігі: екі тәуелсіз орын ауыстыру, |K| = (m!)<sup>2</sup> ≈ 10<sup>' + (2 * lg10f(m)).toFixed(0) + '</sup>.</li></ol>';
+
+      $("wmath").innerHTML = h;
+    }
+
+
+    /* ===================== 5. ГРОНСФЕЛЬД ШИФРЫ ===================== */
+
+    // Режимді ауыстыру
+    function gsetMode(d) {
+      gdec = d;
+      $("ge").classList.toggle("on", !d);
+      $("gd").classList.toggle("on", d);
+      $("glblin").textContent = d ? "Шифрмәтін" : "Бастапқы мәтін";
+      $("gg").textContent = d ? "Кері шифрлау →" : "Шифрлау →";
+    }
+
+    // Әліпбиді әріп + индекс түрінде шығару
+    function galpha() {
+      $("galpha").innerHTML = [...gA()]
+        .map((h, i) => "<span>" + h + "<small>" + i + "</small></span>")
+        .join("");
+    }
+
+    // Гронсфельд шифрлауын / кері шифрлауын орындау
+    function grun() {
+      const a = gA();
+      const m = a.length;
+
+      // Мәтіннен тек әліпбидегі әріптерді қалдырамыз
+      const P = [...$("gin").value.toUpperCase()].filter(c => a.includes(c));
+      // Кілттен тек цифрларды аламыз
+      const K = [...$("gk").value].filter(c => c >= "0" && c <= "9").map(Number);
+
+      // Кілт бос болса — нәтижені тазалаймыз
+      if (!K.length) {
+        gcur = null;
+        $("gout").textContent = "";
+        updG();
+        return;
+      }
+
+      // Әр әріпті кілт цифрына ығыстырамыз
+      const st = P.map((ch, i) => {
+        const x = a.indexOf(ch);          // әріптің индексі
+        const k = K[i % K.length];        // сәйкес кілт цифры
+        const y = gdec
+          ? ((x - k) % m + m) % m         // кері шифрлау: (x − k) mod m
+          : (x + k) % m;                  // шифрлау:      (x + k) mod m
+        return { i, ch, x, k, y, o: a[y] };
+      });
+
+      gcur = { m, K, st };
+      $("gout").textContent = st.map(s => s.o).join("");
+      if(!gdec){lastG=gcur.st.map(s=>s.o).join("");plainG=$("gin").value;}
+      updG();
+    }
+
+    // «Мысал» деректерін енгізу
+    function gfill() {
+      const d = GD[lang];
+      $("gin").value = d.t;
+      $("gk").value = d.k;
+      gsetMode(false);
+      galpha();
+      grun();
+    }
+
+    // Гронсфельдке қатысты барлық панельдерді жаңарту
+    function updG() {
+      gmodel();
+      gtable();
+      chart();
+    }
+
+    // Гронсфельд: қадамдық есеп кестесі
+    function gtable() {
+      $("gfm").innerHTML = gdec
+        ? 'P<sub>i</sub> = (C<sub>i</sub> − K<sub>i mod n</sub> + m) mod m'
+        : 'C<sub>i</sub> = (P<sub>i</sub> + K<sub>i mod n</sub>) mod m';
+
+      if (!gcur || !gcur.st.length) {
+        $("gtb").innerHTML = '<tr><td colspan="5" class="m">Мәтін мен кілтті (цифрлар) енгізіңіз.</td></tr>';
+        return;
+      }
+
+      const m = gcur.m;
+      $("gtb").innerHTML = gcur.st.map(s => {
+        const calc = gdec
+          ? '(' + s.x + ' − ' + s.k + ' + ' + m + ') mod ' + m + ' = ' + s.y
+          : '(' + s.x + ' + ' + s.k + ') mod ' + m + ' = ' + s.y;
+        return '<tr><td>' + (s.i + 1) + '</td><td>' + s.ch + ' · ' + s.x + '</td><td>' + s.k + '</td><td>' + calc + '</td><td>' + s.o + '</td></tr>';
+      }).join("");
+    }
+
+    // Гронсфельд: математикалық модель панелі (формулалар + шығару жолы)
+    function gmodel() {
+      const a = gA();
+      const m = a.length;
+      const n = [...$("gk").value].filter(c => c >= "0" && c <= "9").length;   // кілт ұзындығы
+
+      // --- Формулалар ---
+      let h = '<h4>Формулалар</h4>'
+        + '<div class="fm">C<sub>i</sub> = (P<sub>i</sub> + K<sub>i mod n</sub>) mod m</div>'
+        + '<div class="fm">P<sub>i</sub> = (C<sub>i</sub> − K<sub>i mod n</sub> + m) mod m</div>';
+
+      // --- Шығару жолы ---
+      h += '<h4>Шығару жолы</h4><ol>'
+        + '<li>Әліпби әріптері Z<sub>m</sub> = {0, 1, …, m−1} индекстеріне сәйкестендіріледі: ' + a[0] + '→0, ' + a[1] + '→1, … , ' + a[m - 1] + '→' + (m - 1) + '; мұнда m = ' + m + '.</li>'
+        + '<li>Цезарь ығысуы E<sub>k</sub>(x) = (x + k) mod m — Z<sub>m</sub> жиынындағы биекция (әр индекс бір ғана индекске ауысады).</li>'
+        + '<li>Кері түрлендіру D<sub>k</sub>(x) = (x − k + m) mod m, себебі D<sub>k</sub>(E<sub>k</sub>(x)) = ((x + k) mod m − k + m) mod m = x.</li>'
+        + '<li>Гронсфельд шифрында ығысу позицияға тәуелді: k<sub>i</sub> = K[i mod n], мұнда K = (K<sub>0</sub>…K<sub>n−1</sub>) — 0–9 цифрлары, n — кілт ұзындығы.</li>'
+        + '<li>Нәтижесінде 10 әліпби (ығысу 0…9) кезектесіп қолданылады, кілт кеңістігі 10<sup>n</sup>' + (n ? ' = 10<sup>' + n + '</sup>' : '') + '.</li></ol>';
+
+      $("gmath").innerHTML = h;
+    }
+
+
+    /* ===================== 6. ДИАГРАММА ===================== */
+
+    // Екі шифрдің алғашқы 12 әріпінің әліпбидегі индекстерін бағандармен салыстыру
+function chartSVG(width,height,showW=true,showG=true,interactive=false){
+ const a=A().ab,W=cur?[...cur.out].slice(0,12):[],G=gcur?gcur.st.slice(0,12).map(s=>s.o):[],n=Math.max(W.length,G.length),w=Math.max(240,width),h=Math.max(46,height);
+ if(!n)return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="Деректер жоқ"><text x="${w/2}" y="${h/2}" fill="#95accc" font-family="Segoe UI,Arial,sans-serif" font-size="12" text-anchor="middle">Алдымен мәтінді шифрлаңыз</text></svg>`;
+ const x0=interactive?50:25,x1=w-10,y0=interactive?28:13,y1=h-(interactive?40:20),max=a.length-1,step=(x1-x0)/n,bw=Math.min(interactive?26:18,step*.28),yy=v=>y1-(v/max)*(y1-y0),fs=interactive?13:(w<500?7:9);
+ let svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="Уитстон және Гронсфельд нәтижелерінің индекстері" font-family="Segoe UI,Arial,sans-serif"><rect width="${w}" height="${h}" fill="#081633" rx="8"/>`;
+ for(const v of [0,Math.round(max/2),max]){const y=yy(v);svg+=`<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="#244368"/><text x="${x0-6}" y="${y+3}" font-size="${fs}" text-anchor="end" fill="#95accc">${v}</text>`}
+ for(let i=0;i<n;i++){const cx=x0+step*(i+.5);for(const [kind,letters,show,offset,color] of [['w',W,showW,-bw-1,'#4cc9f0'],['g',G,showG,1,'#ffc857']]){const ch=letters[i];if(!show||ch===undefined)continue;const v=a.indexOf(ch),y=yy(v);svg+=`<g ${interactive?`class="chart-bar" data-series="${kind}" data-index="${i}" tabindex="0" role="button" aria-label="${kind==='w'?'Уитстон':'Гронсфельд'}, ${i+1}: ${ch}, ${v}"`:''}><title>${ch}: ${v}</title><rect x="${cx+offset}" y="${y}" width="${bw}" height="${Math.max(2,y1-y)}" rx="2" fill="${color}"/><text x="${cx+offset+bw/2}" y="${y-3}" font-size="${fs}" text-anchor="middle" fill="${color}">${v}</text></g>`}svg+=`<text x="${cx}" y="${y1+13}" font-size="${fs}" text-anchor="middle" fill="#95accc">${i+1}</text>`}
+ return svg+'</svg>';
+}
+function chart(){const box=$('chart');box.innerHTML=chartSVG(box.clientWidth,box.clientHeight)}
+
+    /* ===================== 7. БАТЫРМАЛАР МЕН ОҚИҒАЛАР ===================== */
+
+    // --- Әліпби панелін басқанда ---
+    $("abs").onclick = e => {
+      const p = e.target.closest("[data-lang]");
+      if (p && p.dataset.lang !== lang) setLang(p.dataset.lang);
+    };
+
+    // --- Гронсфельд ---
+    $("gk").oninput = () => {
+      $("gk").value = $("gk").value.replace(/\D/g, "");   // тек цифрлар
+      grun();
+    };
+    $("gin").oninput = grun;
+    $("ge").onclick = () => switchG(false);
+    $("gd").onclick = () => switchG(true);
+    $("gg").onclick = grun;
+    $("gx").onclick = gfill;
+    $("gc").onclick = () => {
+      $("gin").value = "";
+      $("gout").textContent = "";
+      gcur = null;lastG="";plainG="";
+      updG();
+    };
+
+    // --- Уитстон ---
+    $("be").onclick = () => switchW(false);
+    $("bd").onclick = () => switchW(true);
+    $("bg").onclick = () => run(mode);
+    $("bc").onclick = () => {
+      $("inp").value = "";
+      $("out").textContent = "";
+      cur = null;lastW="";plainW="";
+      updW();
+    };
+
+    // --- Бет ашылғанда мысалдарды автоматты түрде толтыру ---
+    /* ===== Бір бетке сыйғызу: скролл жоқ, сыймаса автоматты кішірейеді ===== */
+    const app = document.querySelector(".app");
+    function fit(){requestAnimationFrame(()=>{chart();if(window.fitPreviews)fitPreviews()})}
+    addEventListener("resize",fit);
+    drawAlphabets();
+    fill();
+    gfill();
+    fit();
+    chart();
+  </script>
+
+  <!-- ============================================================
+       JAVASCRIPT: фондағы «жауын» анимациясы (тек сыртқы әсер)
+       ============================================================ -->
+  <script>
+    (function () {
+      const cv = document.getElementById("rain");
+      const x = cv.getContext("2d");
+      const L = "АӘБВГҒДЕЖЗИКҚЛМНҢОӨПРСТУҰҮФХҺЦЧШЫІЭЮЯABCDEFGHIKLMNOPQRSTUVWXYZ0123456789";
+      const fs = 16;   // әріп өлшемі
+      let cols, dr;    // бағандар саны, әр бағандағы әріптің орны
+
+      // Экран өлшеміне бейімдеу
+      function size() {
+        cv.width = innerWidth;
+        cv.height = innerHeight;
+        cols = Math.ceil(cv.width / fs);
+        dr = Array.from({ length: cols }, () => Math.random() * cv.height / fs);
+        x.fillStyle = "#050816";
+        x.fillRect(0, 0, cv.width, cv.height);
+      }
+
+      // Бір кадрды салу
+      function step() {
+        x.fillStyle = "rgba(5,8,22,.09)";
+        x.fillRect(0, 0, cv.width, cv.height);
+        x.font = fs + "px ui-monospace,monospace";
+
+        for (let i = 0; i < cols; i++) {
+          x.fillStyle = Math.random() < .04 ? "rgba(255,181,71,.55)" : "rgba(34,229,255,.28)";
+          x.fillText(L[Math.floor(Math.random() * L.length)], i * fs, dr[i] * fs);
+
+          if (dr[i] * fs > cv.height && Math.random() > .975) dr[i] = 0;
+          dr[i] += .6;
+        }
+      }
+
+      size();
+      addEventListener("resize", size);
+
+      // Қозғалысты азайту параметрі қосулы болса — анимациясыз, статикалық сурет
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        for (let k = 0; k < 60; k++) step();
+      } else {
+        setInterval(step, 60);
+      }
+    })();
+  </script>
+
+  <button id="mBtn" type="button">Модель</button>
+  <button id="aiBtn" type="button"><b>ИИ</b>ИИ көмекші</button>
+  <div id="dialog" role="dialog" aria-modal="true"></div><div id="aiPanel">
+    <div id="aiHead"><b style="color:var(--c1)">ИИ</b> Көмекші <button id="aiX" aria-label="Көмекшіні жабу">×</button></div>
+    <div id="aiNote">Жергілікті анықтама · интернетсіз жұмыс істейді</div><div id="aiLog" aria-live="polite"></div>
+    <div id="aiChips"></div>
+    <div id="aiForm"><input id="aiIn" placeholder="Сұрақ қойыңыз..." autocomplete="off"><button id="aiSend" type="button">→</button></div>
+  </div>
+  <script>
+    (function () {
+      const pn = $("aiPanel"), log = $("aiLog"), inp = $("aiIn");
+      const add = (txt, me) => { const d = document.createElement("div"); d.className = "msg " + (me ? "me" : "bot"); d.textContent = txt; log.appendChild(d); log.scrollTop = log.scrollHeight; };
+
+      function explain() {
+        const r = [];
+        if (cur && cur.st.length) {
+          const s = cur.st[0];
+          r.push("Уитстон: бірінші жұп «" + s.f + "» → «" + s.o + "». " + (mode
+            ? "Кері шифрлауда 1-әріп оң (R), 2-әріп сол (L) квадраттан табылады; жолдар сақталып, бағандар алмасады."
+            : "Шифрлауда 1-әріп сол (L), 2-әріп оң (R) квадраттан табылады; тіктөртбұрыштың қарсы бұрыштары шифр жұбын береді."));
+        }
+        if (gcur && gcur.st.length) {
+          const s = gcur.st[0];
+          r.push("Гронсфельд: «" + s.ch + "» индексі " + s.x + ", кілт цифры " + s.k + ": " + (gdec ? "(" + s.x + " − " + s.k + " + " + gcur.m + ")" : "(" + s.x + " + " + s.k + ")") + " mod " + gcur.m + " = " + s.y + " → «" + s.o + "».");
+        }
+        return r.join("\n") || "Алдымен мәтін мен кілтті енгізіңіз.";
+      }
+
+      function ans(q) {
+        const t = q.toLowerCase(), has = (...w) => w.some(x => t.includes(x));
+        if (has("әліпби", "алфавит", "ауыстыр", "тіл")) {
+          const l = has("орыс", "рус") ? "ru" : has("ағылш", "англ", "english") ? "en" : has("қазақ", "каз") ? "kk" : null;
+          if (l) { setLang(l); return LANGS[l].name + " таңдалды. Екі шифр да жаңа әліпбимен қайта есептелді."; }
+          return "Қазір «" + LANGS[lang].name + "» қолданылады (" + gA().length + " әріп). Ауыстыру үшін әліпби панелін басыңыз немесе «орыс әліпбиіне ауыс» деп жазыңыз.";
+        }
+        if (has("мысал", "демо", "example")) { fill(); gfill(); return "Мысал деректері енгізілді."; }
+        if (has("тазала", "өшір", "clear")) { $("bc").click(); $("gc").click(); return "Мәтін өрістері тазаланды."; }
+        if (has("түсіндір", "қалай шықты", "нәтиже", "есепте", "explain")) return explain();
+        if (has("кері", "дешифр", "ашу")) return "«Кері шифрлау» режимін таңдап, шифрмәтінді енгізіңіз. Уитстонда сол кілттер, Гронсфельдте сол цифрлар қажет — кілт дұрыс болмаса, мағыналы мәтін шықпайды.";
+        if (has("уитстон", "wheatstone")) return "Уитстон — екі квадратты қолданатын биграммалық шифр. Әр кілт сөзден квадрат құрылады, мәтін жұптарға бөлінеді. 1-әріп сол квадраттан, 2-әріп оң квадраттан табылады; олар тіктөртбұрыштың қарсы бұрыштарын береді: жол сақталады, баған ауысады.";
+        if (has("гронсфельд", "gronsfeld")) return "Гронсфельд — Цезарь шифрының жетілдірілген түрі. Кілт — 0–9 цифрлары. i-ші әріп кілттің i mod n цифрына ығысады: C = (P + K) mod m, мұнда m — әліпби көлемі.";
+        if (has("кілт", "key")) return "Уитстонда екі кілт сөз керек (әріптерден), Гронсфельдте — цифрлар қатары. Кілт ұзағырақ әрі қайталанбаса, талдау қиынырақ болады.";
+        if (has("қауіпсіз", "талда", "бұз", "атака", "күшті")) return "Уитстон кілт кеңістігі (m!)² — өте үлкен, бірақ биграммалық жиілік талдауы мүмкін. Гронсфельдтің кілт кеңістігі тек 10ⁿ, сондықтан қысқа кілтті жиілік талдауымен немесе толық аралауымен ашуға болады.";
+        if (has("формула", "модель", "математ")) return "Жоғарғы «Модель» батырмасында формулалар мен шығару жолы бар; Уитстон/Гронсфельд қойындысын ауыстыруға болады.";
+        if (has("диаграмма", "график")) return "Диаграмманы бассаңыз, үлкен терезе ашылады. Көгілдір баған — Уитстон, сары баған — Гронсфельд. Бағанды басып, әріп пен оның индексін көріңіз; SVG батырмасы суретті жүктейді.";
+        if (has("сәлем", "салем", "привет", "hello", "hi")) return "Сәлем! Шифрлар, кілттер немесе осы беттің жұмысы туралы сұраңыз.";
+        if (has("рахмет", "спасибо", "thanks")) return "Оқасы жоқ! Басқа сұрақ болса, жазыңыз.";
+        return "Мен мына тақырыптарға көмектесе аламын: Уитстон, Гронсфельд, кілт, әліпби ауыстыру, «нәтижені түсіндір», қауіпсіздік. Төмендегі батырмаларды да басып көріңіз.";
+      }
+
+      function send(q) { q = (q || "").trim(); if (!q) return; add(q, true); setTimeout(() => add(ans(q)), 200); inp.value = ""; }
+
+      ["Нәтижені түсіндір", "Уитстон дегеніміз не?", "Гронсфельд дегеніміз не?", "Орыс әліпбиіне ауыс", "Қауіпсіздік"].forEach(s => {
+        const b = document.createElement("button"); b.textContent = s; b.onclick = () => send(s); $("aiChips").appendChild(b);
+      });
+      $("mBtn").onclick = () => document.body.classList.toggle("mopen");
+      $("aiBtn").onclick = () => { pn.classList.toggle("open"); if (pn.classList.contains("open")) inp.focus(); };
+      $("aiX").onclick = () => pn.classList.remove("open");
+      $("aiSend").onclick = () => send(inp.value);
+      inp.onkeydown = e => { if (e.key === "Enter") send(inp.value); };
+      add("Сәлем! Мен криптография бойынша анықтама көмекшісімін. Шифрлар мен осы бет туралы сұраңыз.");
+    })();
+  </script>
+<script>let returnFocus=null,dialogKind='',showW=true,showG=true;
+function toast(message){document.querySelector('.toast')?.remove();const el=document.createElement('div');el.className='toast';el.role='status';el.textContent=message;document.body.append(el);setTimeout(()=>el.remove(),3000)}
+function openDialog(title,html,kind='details',remember=true){const panel=$('dialog');if(remember)returnFocus=document.activeElement;dialogKind=kind;panel.innerHTML=`<div class="dialog-card"><div class="dialog-head"><h2 id="dialogTitle"></h2><button id="closeDialog" aria-label="Терезені жабу">✕ Жабу</button></div>${html}</div>`;$('dialogTitle').textContent=title;panel.style.display='flex';panel.setAttribute('aria-labelledby','dialogTitle');$('closeDialog').onclick=closeDialog;$('closeDialog').focus()}
+function closeDialog(){$('dialog').style.display='none';dialogKind='';if(returnFocus?.isConnected)returnFocus.focus()}
+function switchW(d){if(mode===d)return;setMode(d);$('inp').value=d?lastW:(plainW||DEMO[lang].t);run(d)}
+function switchG(d){if(gdec===d)return;gsetMode(d);$('gin').value=d?lastG:(plainG||GD[lang].t);grun()}
+function openAlphabet(l){const letters=[...AB[l].ab];openDialog(LANGS[l].name,`<p class="dialog-intro">${letters.length} әріп · Индекстер 0-ден басталады · Квадрат өлшемі ${AB[l].r} × ${AB[l].c}</p><div class="alphabet-grid">${letters.map((ch,i)=>`<div><b>${ch}</b><small>${i}</small></div>`).join('')}</div>`,'alphabet')}
+async function copyResult(kind){const value=kind==='w'?(cur?.out||''):(gcur?.st.map(s=>s.o).join('')||'');if(!value)return toast('Алдымен шифрлауды орындаңыз.');try{await navigator.clipboard.writeText(value);toast('Нәтиже көшірілді.')}catch(e){const t=document.createElement('textarea');t.value=value;t.style.position='fixed';t.style.top='0';document.body.append(t);t.select();const ok=document.execCommand('copy');t.remove();toast(ok?'Нәтиже көшірілді.':'Көшіруге браузер рұқсат бермеді.')}}
+function openResult(kind){const value=kind==='w'?(cur?.out||''):(gcur?.st.map(s=>s.o).join('')||'');openDialog((kind==='w'?'Уитстон':'Гронсфельд')+' · Толық нәтиже','<textarea id="fullResult" class="full-result" readonly aria-label="Толық нәтиже"></textarea><button class="btn" id="copyFull">Нәтижені көшіру</button><p class="note">Әліпбиде жоқ таңбалар өңдеу кезінде алынып тасталады.</p>','result');$('fullResult').value=value||'Нәтиже жоқ.';$('copyFull').onclick=()=>copyResult(kind)}
+function squareHTML(){return `<div class="dialog-squares"><div><div class="sq sqL" id="largeL"></div><div class="cap">L — сол квадрат</div></div><div><div class="sq sqR" id="largeR"></div><div class="cap">R — оң квадрат</div></div></div>`}
+function drawLargeSquares(index=0){if(!cur)return;const step=cur.st[index];drawSq($('largeL'),cur.L,A().c,step?.L);drawSq($('largeR'),cur.R,A().c,step?.R)}
+function openSquares(){openDialog('Уитстон · Екі кілттік квадрат',`<p class="dialog-intro">Көгілдір — сол квадрат, сары — оң квадрат. Белгіленген ұяшықтар бірінші жұптың түрленуін көрсетеді.</p>${squareHTML()}<div class="detail" id="squareDetail"></div>`,'squares');drawLargeSquares();$('squareDetail').textContent=cur?.st.length?`Бірінші жұп: ${cur.st[0].f} → ${cur.st[0].o}`:'Квадраттарды көру үшін мәтін мен кілттерді енгізіңіз.'}
+function stepData(kind){if(kind==='w')return (cur?.st||[]).map((s,i)=>{const c=A().c,r=x=>Math.floor(x/c),col=x=>x%c,[ia,iy]=s.L,[ib,ix]=s.R;return[i+1,s.f,mode?`R(${r(ix)},${col(ix)}) · L(${r(iy)},${col(iy)})`:`L(${r(ia)},${col(ia)}) · R(${r(ib)},${col(ib)})`,mode?`L(${r(ix)},${col(iy)})=${s.o[0]}; R(${r(iy)},${col(ix)})=${s.o[1]}`:`R(${r(ia)},${col(ib)})=${s.o[0]}; L(${r(ib)},${col(ia)})=${s.o[1]}`,s.o]});return(gcur?.st||[]).map(s=>[s.i+1,s.ch+' · '+s.x,s.k,gdec?`(${s.x} − ${s.k} + ${gcur.m}) mod ${gcur.m} = ${s.y}`:`(${s.x} + ${s.k}) mod ${gcur.m} = ${s.y}`,s.o])}
+function openSteps(kind,page=0,remember=true){const rows=stepData(kind),limit=innerHeight<600?4:8,pages=Math.max(1,Math.ceil(rows.length/limit));page=Math.max(0,Math.min(page,pages-1));const head=kind==='w'?['№','Жұп','Координаттар','Есептеу','Нәтиже']:['№','Әріп','Кілт','Есептеу','Нәтиже'];openDialog((kind==='w'?'Уитстон':'Гронсфельд')+' · Қадамдық есеп',`<div class="fm">${$(kind==='w'?'wfm':'gfm').innerHTML}</div><p class="dialog-intro">Жолды басып, есепті толық оқыңыз.${kind==='w'?' Тақ ұзындықтағы ашық мәтінге «'+A().pad+'» толықтырушысы қосылады.':''}</p><table><thead><tr>${head.map(t=>'<th>'+t+'</th>').join('')}</tr></thead><tbody id="stepRows"></tbody></table><div class="detail" id="rowDetail" aria-live="polite">Есепті көру үшін жолды таңдаңыз.</div><div class="pagination"><button id="previousPage" ${page===0?'disabled':''}>← Алдыңғы</button><span>${page+1} / ${pages} · ${rows.length} ${kind==='w'?'жұп':'әріп'}</span><button id="nextPage" ${page===pages-1?'disabled':''}>Келесі →</button></div>`,'steps',remember);rows.slice(page*limit,(page+1)*limit).forEach((row,i)=>{const tr=document.createElement('tr');tr.tabIndex=0;tr.role='button';tr.setAttribute('aria-label',row[0]+' есепті ашу');row.forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.append(td)});const select=()=>{$('rowDetail').textContent=`${row[0]}. ${row[1]} → ${row[4]} · ${head[2]}: ${row[2]} · ${row[3]}`;if(kind==='w'){drawSq($('sqL'),cur.L,A().c,cur.st[page*limit+i].L);drawSq($('sqR'),cur.R,A().c,cur.st[page*limit+i].R)}};tr.onclick=select;tr.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select()}};$('stepRows').append(tr)});if(!rows.length)$('stepRows').innerHTML='<tr><td colspan="5">Есептеу деректері жоқ.</td></tr>';$('previousPage').onclick=()=>openSteps(kind,page-1,false);$('nextPage').onclick=()=>openSteps(kind,page+1,false)}
+function openChart(){showW=true;showG=true;openDialog('Нәтиже индекстерін салыстыру','<p class="dialog-intro">Алғашқы 12 әріп. Бағанды басып, әріп пен оның индексін қараңыз.</p><div class="chart-controls"><button id="toggleW" aria-pressed="true">● Уитстон</button><button id="toggleG" aria-pressed="true">● Гронсфельд</button><button id="saveChart">↓ SVG жүктеу</button></div><div id="largeChart"></div><div class="detail" id="barDetail" aria-live="polite">Мәліметті көру үшін бағанды таңдаңыз.</div><p class="note">Индекс мәні шифрдың қауіпсіздігін немесе жылдамдығын өлшемейді.</p>','chart');drawLargeChart();$('toggleW').onclick=()=>{showW=!showW;$('toggleW').setAttribute('aria-pressed',showW);drawLargeChart()};$('toggleG').onclick=()=>{showG=!showG;$('toggleG').setAttribute('aria-pressed',showG);drawLargeChart()};$('saveChart').onclick=()=>{const svg=$('largeChart').innerHTML,url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml;charset=utf-8'})),link=document.createElement('a');link.href=url;link.download='Wheatstone-Gronsfeld-diagram.svg';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}}
+function drawLargeChart(){$('largeChart').innerHTML=chartSVG(960,380,showW,showG,true);document.querySelectorAll('.chart-bar').forEach(el=>{const select=()=>{const kind=el.dataset.series,i=+el.dataset.index,ch=kind==='w'?cur.out[i]:gcur.st[i].o;let text=`${kind==='w'?'Уитстон':'Гронсфельд'} · ${i+1}-әріп · ${ch} · индексі ${A().ab.indexOf(ch)}`;const row=stepData(kind)[kind==='w'?Math.floor(i/2):i];if(row)text+=' · '+row[3];$('barDetail').textContent=text};el.onclick=select;el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select()}}})}
+function openModel(kind='w',page=0,remember=true){const source=$(kind==='w'?'wmath':'gmath'),formulas=[...source.querySelectorAll('.fm')],items=[...source.querySelectorAll('li')],intro=page===0,chunk=innerHeight<650?1:2,total=Math.ceil(items.length/chunk)+1;page=Math.max(0,Math.min(page,total-1));openDialog('Математикалық модель',`<div class="dialog-tabs"><button id="modelW" aria-pressed="${kind==='w'}">Уитстон</button><button id="modelG" aria-pressed="${kind==='g'}">Гронсфельд</button></div><div class="model-content" id="modelContent"><h4>${intro?'Формулалар':'Шығару жолы'}</h4></div><div class="pagination"><button id="modelPrevious" ${page===0?'disabled':''}>← Алдыңғы</button><span>${page+1} / ${total}</span><button id="modelNext" ${page===total-1?'disabled':''}>Келесі →</button></div>`,'model',remember);const content=$('modelContent');if(intro){formulas.forEach(f=>content.append(f.cloneNode(true)));const note=document.createElement('p');note.className='note';note.textContent='Келесі беттерде формулалардың шығару жолы берілген.';content.append(note)}else{const list=document.createElement('ol');list.start=(page-1)*chunk+1;items.slice((page-1)*chunk,page*chunk).forEach(el=>list.append(el.cloneNode(true)));content.append(list)}$('modelW').onclick=()=>openModel('w',0,false);$('modelG').onclick=()=>openModel('g',0,false);$('modelPrevious').onclick=()=>openModel(kind,page-1,false);$('modelNext').onclick=()=>openModel(kind,page+1,false)}
+function fitPreviews(){document.querySelectorAll('.calculation-card .tw').forEach(box=>{const table=box.querySelector('table');if(!table)return;table.hidden=false;const rows=[...table.rows];rows.forEach(row=>row.hidden=false);if(!box.getClientRects().length||box.clientHeight<20){table.hidden=true;return}const end=box.getBoundingClientRect().bottom;rows.forEach(row=>{if(row.getBoundingClientRect().bottom>end-1)row.hidden=true})})}
+function activate(el,callback){el.tabIndex=0;el.role='button';el.addEventListener('click',callback);el.addEventListener('keydown',e=>{if(e.target===el&&(e.key==='Enter'||e.key===' ')){e.preventDefault();callback()}})}
+function install(){
+ const header=document.querySelector('.head'),actions=document.createElement('div');actions.className='head-actions';actions.append($('mBtn'),$('aiBtn'));header.append(actions);
+ for(const [kind,id,name] of [['w','out','Уитстон'],['g','gout','Гронсфельд']]){const box=$(id).parentNode;box.setAttribute('aria-label',name+' толық нәтижесін ашу');activate(box,()=>openResult(kind));const copy=document.createElement('button');copy.className='copy-result';copy.textContent='Көшіру';copy.setAttribute('aria-label',name+' нәтижесін көшіру');copy.onclick=e=>{e.stopPropagation();copyResult(kind)};box.append(copy)}
+ for(const [id,kind] of [['wst','w'],['gst','g']]){const button=document.createElement('button');button.className='open-detail';button.textContent='Толық ↗';button.setAttribute('aria-label',(kind==='w'?'Уитстон':'Гронсфельд')+' толық есебі');button.onclick=()=>openSteps(kind);$(id).querySelector('.ch').append(button)}
+ const wbody=document.createElement('div');wbody.className='analysis-body';$('wst').append(wbody);wbody.append($('wst').querySelector('.sqs'),$('wst').querySelector('.tw'));
+ for(const id of ['sqL','sqR']){const el=$(id);el.setAttribute('aria-label','Уитстон квадраттарын үлкейту');activate(el,openSquares)}
+ $('abs').onclick=e=>{const card=e.target.closest('[data-lang]');if(!card)return;const l=card.dataset.lang;if(l!==lang)setLang(l);openAlphabet(l)};
+ $('abs').addEventListener('keydown',e=>{const card=e.target.closest('[data-lang]');if(card&&(e.key==='Enter'||e.key===' ')){e.preventDefault();card.click()}});
+ $('chm').setAttribute('aria-label','Диаграмманы үлкейту');activate($('chm'),openChart);$('mBtn').onclick=()=>openModel();
+ for(const [id,label] of [['inp','Уитстон мәтіні'],['gin','Гронсфельд мәтіні'],['k1','Сол квадрат кілті'],['k2','Оң квадрат кілті'],['gk','Гронсфельд сандық кілті'],['aiIn','Көмекшіге сұрақ']])$(id).setAttribute('aria-label',label);
+ ['k1','k2','gk'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')id==='gk'?grun():run(mode)}));
+ for(const id of ['inp','gin'])$(id).addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();id==='inp'?run(mode):grun()}});
+ $('dialog').onclick=e=>{if(e.target===$('dialog'))closeDialog()};
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('dialog').style.display==='flex')closeDialog();else if($('aiPanel').classList.contains('open')){$('aiPanel').classList.remove('open');$('aiBtn').setAttribute('aria-expanded','false');$('aiBtn').focus()}}if(e.key==='Tab'&&$('dialog').style.display==='flex'){const focus=[...$('dialog').querySelectorAll('button:not(:disabled),textarea,[tabindex="0"]')];const first=focus[0],last=focus[focus.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
+ $('aiBtn').setAttribute('aria-expanded','false');new MutationObserver(()=>{$('aiBtn').setAttribute('aria-expanded',$('aiPanel').classList.contains('open'))}).observe($('aiPanel'),{attributes:true,attributeFilter:['class']});$('aiX').addEventListener('click',()=>$('aiBtn').focus());
+ const observer=new ResizeObserver(()=>{chart();fitPreviews()});observer.observe($('chart'));observer.observe($('wst'));observer.observe($('gst'));new MutationObserver(fitPreviews).observe($('wtb'),{childList:true});new MutationObserver(fitPreviews).observe($('gtb'),{childList:true});fitPreviews();document.fonts.ready.then(()=>{chart();fitPreviews()});
+}
+install();
+</script><script>
+/* Inputs and keys stay in memory; the Windows bundle is fully local. */
+const offlineDesktop = location.protocol === 'file:';
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  navigator.serviceWorker.register('./sw.js').catch(() => {});
+}
+let installPrompt = null;
+const installButton = document.createElement('button');
+installButton.textContent = offlineDesktop ? 'Windows · Көмек' : 'Қосымшаны орнату';
+installButton.setAttribute('aria-label', offlineDesktop
+  ? 'Windows қосымшасын пайдалану нұсқаулығы'
+  : 'Ноутбукке немесе телефонға орнату');
+document.querySelector('.head-actions').prepend(installButton);
+window.addEventListener('beforeinstallprompt', event => {
+  event.preventDefault();
+  installPrompt = event;
+  const button = document.getElementById('installBrowserApp');
+  if (button) button.hidden = false;
+});
+installButton.onclick = () => {
+  if (offlineDesktop) {
+    openDialog('Windows қосымшасы', `
+      <p class="dialog-intro">Шифрлау мен есептер интернетсіз жұмыс істейді. Мәтін мен кілттер осы терезеде ғана өңделеді.</p>
+      <p class="dialog-intro">Жұмыс үстеліне белгіше қосу үшін архивті толық шығарып, <b>Install.cmd</b> файлын екі рет басыңыз. Кейін «Wheatstone-Gronsfeld» белгішесі арқылы ашыңыз.</p>
+      <p class="dialog-intro">Орнатусыз ашу: <b>Open.cmd</b>. Жою: <b>Uninstall.cmd</b>.</p>
+      <p class="note">Жеке терезе Microsoft Edge немесе Google Chrome арқылы ашылады.</p>`);
+    return;
+  }
+  openDialog('Ноутбукке және телефонға орнату', `
+    <h3 class="install-heading">Windows ноутбук</h3>
+    <p class="dialog-intro">Архивті жүктеп, толық шығарыңыз («Извлечь всё»). Ішіндегі <b>Install.cmd</b> файлын екі рет басыңыз. Жұмыс үстелінде «Wheatstone-Gronsfeld» белгішесі пайда болады.</p>
+    <a class="download-app" href="./Wheatstone-Gronsfeld-Windows.zip" download="Wheatstone-Gronsfeld-Windows.zip">↓ Windows нұсқасын жүктеу</a>
+    <p class="dialog-intro">Орнатусыз іске қосу үшін <b>Open.cmd</b> файлын ашыңыз. Қосымша Edge немесе Chrome арқылы жеке терезеде ашылады. Шифрлау үшін интернет қажет емес.</p>
+    <h3 class="install-heading">Браузер арқылы орнату</h3>
+    <button class="btn" id="installBrowserApp" ${installPrompt ? '' : 'hidden'}>Осы құрылғыға орнату</button>
+    <p class="dialog-intro"><b>Windows / Linux:</b> Chrome немесе Edge мәзірінен «Орнату» / «Установить приложение» тармағын таңдаңыз. Атауы браузер нұсқасына қарай өзгеруі мүмкін. Белгіше арқылы қосымша жеке терезеде ашылады.</p>
+    <p class="dialog-intro"><b>macOS:</b> Chrome арқылы орнатыңыз немесе Safari-де «Файл» → «Добавить в Dock» таңдаңыз (macOS Sonoma және одан кейінгі нұсқалар).</p>
+    <p class="dialog-intro"><b>Android:</b> Chrome мәзірі → «Қолданбаны орнату» немесе «Басты экранға қосу». <b>iPhone:</b> Safari → «Бөлісу» → «Басты экранға қосу».</p>`);
+  document.getElementById('installBrowserApp').onclick = async () => {
+    if (!installPrompt) return;
+    const prompt = installPrompt;
+    installPrompt = null;
+    await prompt.prompt();
+    const choice = await prompt.userChoice;
+    const button = document.getElementById('installBrowserApp');
+    if (button) button.hidden = true;
+    if (choice.outcome === 'accepted') closeDialog();
+  };
+};
+window.addEventListener('appinstalled', () => {
+  installPrompt = null;
+  installButton.hidden = true;
+});
+if (!offlineDesktop && window.matchMedia('(display-mode: standalone)').matches) {
+  installButton.hidden = true;
+}
+
+</script></body>
+
+</html>

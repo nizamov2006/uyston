@@ -1,0 +1,14 @@
+@echo off
+setlocal DisableDelayedExpansion
+set "WG_BUNDLE_PATH=%~dp0"
+powershell.exe -NoLogo -NoProfile -Command "$ErrorActionPreference='Stop'; try { function Find-Browser { foreach($base in @($env:ProgramFiles, ${env:ProgramFiles(x86)}, $env:LOCALAPPDATA)) { if($base) { foreach($relative in @('Microsoft\Edge\Application\msedge.exe','Google\Chrome\Application\chrome.exe')) { $candidate=Join-Path $base $relative; if(Test-Path -LiteralPath $candidate -PathType Leaf) { return $candidate } } } }; throw 'Microsoft Edge or Google Chrome is required.' }; $browser=Find-Browser; if(-not $env:LOCALAPPDATA) { throw 'LOCALAPPDATA is unavailable.' }; $source=(Get-Item -LiteralPath $env:WG_BUNDLE_PATH).FullName; $target=Join-Path $env:LOCALAPPDATA 'WheatstoneGronsfeld'; $marker=Join-Path $target 'install.marker'; $tag='wheatstone-gronsfeld-offline-v1'; $files=@('Wheatstone-Gronsfeld.html','app.ico','Open.cmd','Uninstall.cmd','README-kk.txt'); foreach($file in $files) { if(-not (Test-Path -LiteralPath (Join-Path $source $file) -PathType Leaf)) { throw ('Missing file: '+$file+'. Extract the entire ZIP first.') } }; if(Test-Path -LiteralPath $target) { if(-not (Test-Path -LiteralPath $marker -PathType Leaf)) { throw 'The install folder already exists and is not marked as this app. No changes were made.' }; if([IO.File]::ReadAllText($marker).Trim() -ne $tag) { throw 'The existing install folder belongs to another app. No changes were made.' } }; [void][IO.Directory]::CreateDirectory($target); foreach($file in $files) { $src=Join-Path $source $file; $dst=Join-Path $target $file; if(-not [string]::Equals([IO.Path]::GetFullPath($src),[IO.Path]::GetFullPath($dst),[StringComparison]::OrdinalIgnoreCase)) { Copy-Item -LiteralPath $src -Destination $dst -Force } }; [IO.File]::WriteAllText($marker,$tag); $html=Join-Path $target 'Wheatstone-Gronsfeld.html'; $uri=([System.Uri]$html).AbsoluteUri; $arg='--app='+[char]34+$uri+[char]34; $shell=New-Object -ComObject WScript.Shell; foreach($folder in @([Environment]::GetFolderPath('DesktopDirectory'),[Environment]::GetFolderPath('Programs'))) { if($folder) { [void][IO.Directory]::CreateDirectory($folder); $link=$shell.CreateShortcut((Join-Path $folder 'Wheatstone-Gronsfeld.lnk')); $link.TargetPath=$browser; $link.Arguments=$arg; $link.WorkingDirectory=$target; $link.IconLocation=''+[char]34+(Join-Path $target 'app.ico')+[char]34+',0'; $link.Description='Wheatstone and Gronsfeld cipher laboratory'; $link.Save() } }; Write-Host ('Installed to: '+$target); exit 0 } catch { Write-Host ('Error: '+$_.Exception.Message); exit 1 }"
+if errorlevel 1 (
+  echo.
+  echo The operation could not be completed. See the message above.
+  pause
+  exit /b 1
+)
+echo.
+echo Installed for this user. Open the Wheatstone-Gronsfeld desktop or Start menu shortcut.
+pause
+exit /b 0
